@@ -22,7 +22,7 @@
 			<gap:platform name="blackberry" project="widgets"/>
 		</gap:platforms>
 
-		<icon src="metaversoico.png" width="72" height="72" />
+		<icon src="icon.png" gap:role="default" />
 		<gap:splash src="images/logo_congreso.png" />
 		
 </widget>
