@@ -8,12 +8,13 @@
 	<script type="text/javascript" src="js/jquerymobile10a3min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript">
+	
 	$(document).bind("mobileinit", function(){
-         $.mobile.defaultTransition = 'none';
+         $.mobile.defaultTransition = 'none';		 
+		$.footerheight = $('#test').height();
 	});
 	$(document).ready(function(){
-		var footerheight = $('#test').height();
-		$('#map_wrap').height( $(window).height() - ( 3 +footerheight));
+		$.footerheight = $('#test').height();
 	});
 		var map,myOptions,latlng;
 		var hotels = [
@@ -33,9 +34,9 @@
 		function initialize() {
 			latlng = new google.maps.LatLng(38.985609, 1.544721);
 			myOptions = {
-			  zoom: 17,
+			  zoom: 16,
 			  center: latlng,
-			  mapTypeId: google.maps.MapTypeId.SATELLITE
+			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 			
@@ -62,9 +63,8 @@
 				 initialize();
 		});
 		$('#location').live('pageshow',function(){
-				//$('#map_wrap').height( $(window).height() -  (10 + $('').height()));
+				$('#map_wrap').height( $(window).height() - ($.footerheight));
 				$('#map_wrap').width($(window).width() );
-				//alert($('[data-role=content]').height());
 				google.maps.event.trigger(map, 'resize');
 				map.setOptions(myOptions); 
 
@@ -252,7 +252,7 @@
 
 	<div id='nav_footer' data-role="footer" data-position="fixed" data-theme="m">
 		<div data-role="navbar" class="ui-navbar" >
-		  <ul class="ui-grid-b">
+		  <ul class="ui-grid-m">
 			<li id="test"><a class="selected" href="#index" data-transition="none"><img src="images/wclock.png"><br/>Programa</a></li>
 			<li ><a href="#twitter" data-transition="none"><img src="images/wcomments.png"><br/>Tweets</a></li>
 			<li ><a href="#location" data-transition="none"><img src="images/wmap.png"><br/>Mapa</a></li>
@@ -273,7 +273,7 @@
 
 	<div data-role="footer" data-position="fixed" data-theme="m" id="nav_footer">
 		<div data-role="navbar" class="ui-navbar">
-		  <ul class="ui-grid-b">
+		  <ul class="ui-grid-m">
 			<li  ><a href="#index" data-transition="none" ><img src="images/wclock.png" ><br/>Programa</a></li>
 			<li ><a class="selected" href="#twitter" data-transition="none"><img src="images/wcomments.png"><br/>Tweets</a></li>
 			<li ><a href="#location" data-transition="none" ><img src="images/wmap.png"><br/>Mapa</a></li>
@@ -286,14 +286,14 @@
   
 <div data-role="page"  id="location" >	
 	<div data-role="content" style="padding:0;">
-		<div id="map_wrap" style="width:320px; height:400px">
+		<div id="map_wrap" style="width:320px; height:100%">
 			<div id="map_canvas" style="width:100%; height:100%;padding:0;"></div>
 		</div>	
 	</div>
-	<div data-role="footer" data-position="fixed" data-theme="m" id="nav_footer" >
+	<div data-role="footer" data-theme="m" id="nav_footer" >
 		<div data-role="navbar" class="ui-navbar">
-		  <ul class="ui-grid-b">
-			<li><a href="#index" data-transition="none"><img src="images/wclock.png"><br/>Programa</a></li>
+		  <ul class="ui-grid-m">
+			<li id="test"><a href="#index" data-transition="none"><img src="images/wclock.png"><br/>Programa</a></li>
 			<li ><a href="#twitter" data-transition="none"><img src="images/wcomments.png"><br/>Tweets</a></li>
 			<li ><a class="selected" href="#location" data-transition="none"><img src="images/wmap.png"><br/>Mapa</a></li>
 			<li ><a href="#sponsors" data-transition="none"><img src="images/wsponsor.png"><br/>Sponsors</a></li>
@@ -351,7 +351,7 @@
 	</div>
 	<div data-role="footer" data-position="fixed" data-theme="m">
 		<div data-role="navbar" class="ui-navbar">
-		  <ul class="ui-grid-b">
+		  <ul class="ui-grid-m">
 			<li id="test"><a  href="#index" data-transition="none" ><img src="images/wclock.png" ><br/>Programa</a></li>
 			<li ><a  href="#twitter" data-transition="none" ><img src="images/wcomments.png" ><br/>Tweets</a></li>
 			<li ><a  href="#location"data-transition="none" ><img src="images/wmap.png" ><br/>Mapa</a></li>
